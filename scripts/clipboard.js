@@ -8,19 +8,10 @@ exports.init = function() {
     const $button = document.createElement("button");
     $button.innerHTML = "Copier";
     $clipboardEl.parentNode.append($button);
-    $button.addEventListener(
-      "click",
-      copyToClipboard.bind(this, $clipboardEl, $button)
-    );
-    navigator.clipboard
-      .writeText($clipboardEl.getAttribute("data-clipboard"))
-      .then(() => {
-        console.log("Copié !");
-      })
-      .catch(err => console.warn(err));
+    let $copyText = document.getElementById("url");
+    $button.addEventListener("click", function() {
+      $copyText.select();
+      document.execCommand("copy");
+    });
   });
 };
-
-function copyToClipboard($clipboardEl, $button) {
-  console.log("Click !");
-}
