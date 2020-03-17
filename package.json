@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "concurrently --kill-others \"npm run sass\" \"nodemon app.js\"",
+    "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed"
   },
   "dependencies": {
     "@babel/core": "^7.8.7",
