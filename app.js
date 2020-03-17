@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
 const dotenv = require("dotenv").config();
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const axios = require("axios");
 
@@ -34,9 +34,13 @@ app.get("/party/:id", (req, res) => {
     .get(`${process.env.API_URL}/party/${req.params.id}`)
     .then(({ data }) =>
       res.render("party", {
-        party: data,
+        // party: data,
+        name: data.name,
+        author: data.author,
+        _id: data._id,
         title: data.name,
-        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`
+        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`,
+        items: data.items
       })
     )
     .catch(err => console.log(err));

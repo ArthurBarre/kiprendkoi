@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run sass\" \"nodemon app.js\"",
-    "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed"
+    "start": "concurrently --kill-others \"npm run sass\" \"npm run watchify\" \"nodemon app.js\"",
+    "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed",
+    "watchify": "watchify scripts/index.js -o public/script.js  -t [ babelify --presets [ @babel/preset-env babel-preset-minify ]  ]"
   },
   "dependencies": {
     "@babel/core": "^7.8.7",
