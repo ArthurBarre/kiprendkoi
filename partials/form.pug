@@ -3,4 +3,10 @@ form(method="post" action="/party")
   div
     label(for="name") Nom de l'événement
     input(name="name" id="name" required minlength="3" placeholder="Nouvel an")
+  div
+    label(for="author") Nom de l'auteur
+    input(name="author" id="author" required minlength="3" placeholder="Auteur")
+  div
+    label(for="date") Nom de l'événement
+    input(name="date" id="date" type="date" placeholder="Date")
   button(type="submit") Créer
