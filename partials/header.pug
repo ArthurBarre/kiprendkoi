@@ -7,6 +7,12 @@ html(lang="fr")
     link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css" async)
     link(rel="stylesheet" href="/style.css")
     script(src="/script.js" async)
+    script.
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register("/sw.js")
+          .then(() => console.log('Service worker is registered'))
+          .catch(err => console.warn(err));
+      }
   body
   header.navbar
     div.navbar-item.logo KiPrendKoi
