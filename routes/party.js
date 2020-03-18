@@ -1,22 +1,3 @@
-const express = require("express");
-const app = express();
-const dotenv = require("dotenv").config();
-const port = process.env.PORT || 3000;
-const bodyParser = require("body-parser");
-const axios = require("axios");
-
-app.set("view engine", "pug");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.static("public"));
-
-app.use(express.static("pwa"));
-
-app.get("/", function(req, res) {
-  res.render("index");
-});
-
 app.post("/party", (req, res) => {
   axios
     .post(`${process.env.API_URL}/party`, req.body)
@@ -36,7 +17,7 @@ app.get("/party/:id", (req, res) => {
     .get(`${process.env.API_URL}/party/${req.params.id}`)
     .then(({ data }) =>
       res.render("party", {
-        party: data,
+        // party: data,
         name: data.name,
         author: data.author,
         _id: data._id,
@@ -47,5 +28,3 @@ app.get("/party/:id", (req, res) => {
     )
     .catch(err => console.log(err));
 });
-
-app.listen(port, () => console.log(`Front app listening on port ${port}!`));

@@ -1,25 +1,29 @@
 include ../partials/header.pug
-h1 Qui prend quoi ?
-h2= name
-h3 Créé par #{author}
-
+h1.title.title-form.has-text-centered Qui prend quoi ?
+h2.title= name
+h3.title Créé par #{author}
+script.
+  party = !{JSON.stringify(party)}
 ul
   each item in items
     li
-      form(method="post" action=`/party/${ _id }/items/${ _id }`)
+      form.newParty(method="post" action=`/party/${ _id }/items/${ _id }`)
         p= `${ item.user } -> ${ item.name }`
         button(type="submit") Supprimer
 
-form(method="post" action=`/party/${ _id }/items`)
-  div
-    label(for="name") Name :
-    input(name="name" id="name" required minlength="3" placeholder="Name")
-  div
-    label(for="user") User :
-    input(name="user" id="user" required minlength="3" placeholder="User")
-  button(type="submit") Creer un item
+form.newParty__fields.container(method="post" action=`/party/${ _id }/items`)
+  div.field
+    label.label(for="name") Name :
+    div.control
+      input.input(name="name" id="name" required minlength="3" placeholder="Name")
+  div.field
+    label.label(for="user") User :
+    div.control
+      input.input(name="user" id="user" required minlength="3" placeholder="User")
+  button.button.is-success(type="submit") Creer un item
 
-label(for="url") Partagez l'événement
-div
-  input(id="url" value=`${url}` data-share-url=`${url}` data-clipboard=`${name}` data-share-title=`${url}` data-share-text=`${author} vous invite a rejoindre l'evenement ${name}`)
-  button(id="share") Partager l'evenement
+div.field
+  div.control
+  label.label(for="url") Partagez l'événement
+    input.input(id="url" value=`${url}` data-share-url=`${url}` data-clipboard=`${name}` data-share-title=`${url}` data-share-text=`${author} vous invite a rejoindre l'evenement ${name}`)
+    button.button.is-link(type="submit" id="share") Partager l'evenement
