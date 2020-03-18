@@ -1,6 +1,7 @@
 .newParty__fields {
   margin-bottom: 1em;
-
+  width: 80%;
+  font-family: "Roboto Mono", monospace;
   @include medium {
     display: grid;
     grid-template-columns: 175px 1fr;

@@ -1,10 +1,17 @@
-h2 Créer un événement
-form(method="post" action="/party").newParty
-  div.newParty__fields
-    label(for="name") Nom de l'événement
-    input(name="name" id="name" required minlength="3" placeholder="Nouvel an")
-    label(for="author" required) Votre pseudo
-    input(name="author" id="author" required minlength="3" placeholder="John")
-    label(for="date") Date de l'événement
-    input(name="date" id="date" type="date")
-  button(type="submit") Créer
+div
+  h2.title.title-form.has-text-centered Créer un événement
+  form(method="post" action="/party").newParty
+    div.newParty__fields.container
+      div.field
+        label.label(for="name") Nom de l'événement
+        div.control
+          input.input(name="name" id="name" required minlength="3" placeholder="Nouvel an")
+      div.field
+        label.label.has-text-grey-darker(for="author" required) Votre pseudo
+        div.control
+          input.input(name="author" id="author" required minlength="3" placeholder="John")
+      div.field
+        label.label(for="date") Date de l'événement
+        div.control
+          input.input(name="date" id="date" type="date")
+      button.button.is-success(type="submit") Créer

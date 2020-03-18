@@ -1,7 +1,12 @@
 @import "./reset.scss";
 @import "./config/medias.scss";
+@import "./blocs/form.scss";
 @import "./blocs/newParty.scss";
-
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
 label {
   display: block;
+}
+.logo {
+  font-family: "Roboto Mono", monospace;
+  font-size: 18px;
 }
