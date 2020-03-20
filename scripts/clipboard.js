@@ -6,6 +6,7 @@ exports.init = function() {
   }
   document.querySelectorAll("[data-clipboard]").forEach($clipboardEl => {
     const $button = document.createElement("button");
+    $button.className = 'button is-info'
     $button.innerHTML = "Copier";
     $clipboardEl.parentNode.append($button);
     let $copyText = document.getElementById("url");

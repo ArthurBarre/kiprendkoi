@@ -26,10 +26,9 @@ div.newParty__fields.container.is-centered
     label.label(for="url") Partagez l'événement
     div.control
       input.input(id="url" value=`${url}` data-share-url=`${url}` data-clipboard=`${name}` data-share-title=`${url}` data-share-text=`${author} vous invite a rejoindre l'evenement ${name}`)
-      button.button.is-info(id="copy") Copier le lien
   div
   div.buttons.field
-    button.button.is-info(type="submit" id="share") Partager l'evenement 
+    button#share.button.is-info Partager l'evenement 
 div.box
   each item in items
     form(method="delete" action=`/party/${ _id }/items/${ _id }`)
