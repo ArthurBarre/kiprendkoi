@@ -2480,9 +2480,22 @@ try {
 "use strict";exports.init=function(){navigator.clipboard||console.warn("Pas de support :("),document.querySelectorAll("[data-clipboard]").forEach(function(a){var b=document.createElement("button");b.className="button is-info",b.innerHTML="Copier",a.parentNode.append(b);var c=document.getElementById("url");b.addEventListener("click",function(){c.select(),document.execCommand("copy")})})};
 
 },{}],32:[function(require,module,exports){
-"use strict";var regeneratorRuntime=require("regenerator-runtime").path,clipboard=require("./clipboard"),shareModule=require("./share"),addItem=require("./addItem");clipboard.init(),shareModule.share(),addItem.add(),null===localStorage.getItem("items")&&localStorage.setItem("items",JSON.stringify([]));
+"use strict";var regeneratorRuntime=require("regenerator-runtime").path,clipboard=require("./clipboard"),shareModule=require("./share"),addItem=require("./addItem"),pushNotifications=require("./pushNotification");clipboard.init(),shareModule.share(),addItem.add(),pushNotifications.notification(),null===localStorage.getItem("items")&&localStorage.setItem("items",JSON.stringify([]));
 
-},{"./addItem":30,"./clipboard":31,"./share":33,"regenerator-runtime":29}],33:[function(require,module,exports){
+},{"./addItem":30,"./clipboard":31,"./pushNotification":33,"./share":34,"regenerator-runtime":29}],33:[function(require,module,exports){
+"use strict";exports.notification=function(){// Notification.requestPermission(function(status) {
+//   console.log("Notification permission status:", status);
+// });
+function a(){// Let's check if the browser supports notifications
+if(!("Notification"in window))console.log("This browser does not support desktop notification");// Let's check whether notification permissions have alredy been granted
+else if("granted"===Notification.permission)// If it's okay let's create a notification
+new Notification("Hi there!");// Otherwise, we need to ask the user for permission
+else("denied"!==Notification.permission||"default"===Notification.permission)&&Notification.requestPermission(function(a){// If the user accepts, let's create a notification
+if("granted"===a)new Notification("Hi there!")});// At last, if the user has denied notifications, and you
+// want to be respectful there is no need to bother them any more.
+}a()};
+
+},{}],34:[function(require,module,exports){
 "use strict";exports.share=function(){navigator.share&&console.log("supported");var a=document.getElementById("share"),b=document.getElementById("url");a&&a.addEventListener("click",function(){navigator.share({title:b.getAttribute("data-share-title"),text:b.getAttribute("data-share-text"),url:b.getAttribute("data-share-url")}).then(function(){return console.log("Successful share")},function(a){return console.log("Error sharing:",a)})})};
 
 },{}]},{},[32]);
