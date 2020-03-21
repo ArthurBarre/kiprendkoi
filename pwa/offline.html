@@ -4,12 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .parties {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
     <title>Qui prend quoi - Hors ligne</title>
   </head>
   <body>
     <h1>Oops !</h1>
     <h2>Vous êtes hors ligne</h2>
+    <div class="parties"></div>
     <script>
+      const parties = document.querySelector(".parties");
       caches.open("parties").then(cache =>
         cache.keys().then(keys =>
           keys.forEach(key => {
@@ -18,7 +30,7 @@
               const $link = document.createElement("a");
               $link.href = key.url;
               $link.innerHTML = name;
-              document.body.appendChild($link);
+              parties.appendChild($link);
             }
           })
         )
