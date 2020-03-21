@@ -48,4 +48,13 @@ app.get("/party/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.get("/item/:partyID/:id", function(req, res) {
+  axios
+    .delete(
+      `${process.env.API_URL}/party/${req.params.partyID}/items/${req.params.id}`
+    )
+    .then(() => res.redirect(`/party/${req.params.partyID}`))
+    .catch(err => res.send(err));
+});
+
 app.listen(port, () => console.log(`Front app listening on port ${port}!`));

@@ -7,12 +7,6 @@ script.
   if (typeof party !== "undefined") {
     localStorage.setItem(location.href, party.name);
   }
-ul
-  each item in items
-    li
-      form.newParty(method="post" action=`/party/${ _id }/items/${ _id }`)
-        p= `${ item.user } -> ${ item.name }`
-        button(type="submit") Supprimer
 
 form.newParty__fields.container(method="post" action=`/party/${ _id }/items`)
   div.field
@@ -34,8 +28,8 @@ div.newParty__fields.container.is-centered
     button#share.button.is-info Partager l'evenement 
 div.box
   each item in items
-    form(method="delete" action=`/party/${ _id }/items/${ _id }`)
-      ul.list.row
+    form(method="delete" action=`/item/${ _id }/${ item._id }`)
+      ul.list.row.item
         li.list-item.is-size-4= `${ item.user }`
         li.list-item.is-size-4= `${ item.name }`
         button.button.is-warning(type="submit") Supprimer
