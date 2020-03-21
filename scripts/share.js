@@ -1,7 +1,9 @@
 exports.share = function() {
   if (navigator.share) {
     console.log("supported");
-  } else console.log("not");
+  } else {
+    // console.log("not");
+  }
   const shareButton = document.getElementById("share");
   const $shareEl = document.getElementById("url");
   if (shareButton) {

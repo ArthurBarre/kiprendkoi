@@ -4,6 +4,9 @@ h2.title= name
 h3.title Créé par #{author}
 script.
   party = !{JSON.stringify(party)}
+  if (typeof party !== "undefined") {
+    localStorage.setItem(location.href, party.name);
+  }
 ul
   each item in items
     li
@@ -20,7 +23,7 @@ form.newParty__fields.container(method="post" action=`/party/${ _id }/items`)
     label.label(for="user") User :
     div.control
       input.input(name="user" id="user" required minlength="3" placeholder="User")
-  button.button.is-success(type="submit" id="create-item") Creer un item
+  button#create-item.button.is-success(type="submit" ) Creer un item
 div.newParty__fields.container.is-centered
   div.field
     label.label(for="url") Partagez l'événement
