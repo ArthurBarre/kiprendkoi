@@ -1,7 +1,7 @@
 include ../partials/header.pug
 h1.title.title-form.has-text-centered Qui prend quoi ?
-h2.title= name
-h3.title Créé par #{author}
+div.title-form= name
+div.subtitle-form Créé par #{author}
 script.
   party = !{JSON.stringify(party)}
   if (typeof party !== "undefined") {
@@ -10,26 +10,37 @@ script.
 
 form.newParty__fields.container(method="post" action=`/party/${ _id }/items`)
   div.field
-    label.label(for="name") Name :
+    label.label(for="name") Produit :
     div.control
-      input.input(name="name" id="name" required minlength="3" placeholder="Name")
+      input.input(name="name" id="name" required minlength="3" placeholder="Entrer le produit")
   div.field
-    label.label(for="user") User :
+    label.label(for="user") Utilisateur :
     div.control
-      input.input(name="user" id="user" required minlength="3" placeholder="User")
-  button#create-item.button.is-success(type="submit" ) Creer un item
-div.newParty__fields.container.is-centered
+      input.input(name="user" id="user" required minlength="3" placeholder="Qui êtes-vous ?")
+  button#create-item.button.is-success(type="submit" ) J'apporte ceci =)
+div.newParty__fields.container.is-centered.row
   div.field
     label.label(for="url") Partagez l'événement
     div.control
-      input.input(id="url" value=`${url}` data-share-url=`${url}` data-clipboard=`${name}` data-share-title=`${url}` data-share-text=`${author} vous invite a rejoindre l'evenement ${name}`)
-  div
-  div.buttons.field
-    button#share.button.is-info Partager l'evenement 
+      input.input(id="url" value=`${url}` data-share-url=`${url}` data-clipboard=`${name}` data-share-title=`${name}` data-share-text=`${author} vous invite a rejoindre l'evenement ${name}`)
+    div.buttons
+      button#share.button.is-info.button-margin  Partager l'evenement 
 div.box
   each item in items
     form(method="delete" action=`/item/${ _id }/${ item._id }`)
       ul.list.row.item
-        li.list-item.is-size-4= `${ item.user }`
-        li.list-item.is-size-4= `${ item.name }`
-        button.button.is-warning(type="submit") Supprimer
+        //- img.image(id=item._id alt=item.name)
+        li#name-item.list-item.is-size-4.user= `${ item.user }`
+        li#user-item.list-item.is-size-4.name= `${ item.name }`
+        button#remove-item.button.is-warning.list-item(type="submit") Supprimer
+        //- script.
+        //-   async function appendImage(item){
+        //-     let response = await fetch(
+        //-       `https://pixabay.com/api/?q=${item.name}&key=15682507-3e8e250fcfcf0d1690e9a1d6e`
+        //-     );
+        //-     response = await response.json();
+        //-     let image = document.querySelector(".image");
+        //-     images.src = response.hits[0].largeImageURL
+        //-   }
+        //-   appendImage(item)
+        //Cette partie ne fonctionne pas...

@@ -3,8 +3,6 @@
   flex-direction: row;
 }
 .list-item {
-  margin-left: 0.5rem;
-}
-.list.row.item {
-  margin-right: 10px;
+  margin-left: 0.5rem !important;
+  margin-top: 0.5rem !important;
 }

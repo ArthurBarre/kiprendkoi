@@ -1,34 +1,31 @@
-exports.notification = function() {
-  // Notification.requestPermission(function(status) {
-  //   console.log("Notification permission status:", status);
-  // });
-  function notifyMe() {
-    // Let's check if the browser supports notifications
+module.exports = class Pusher {
+  //check if web notification is supported
+  checkSupport() {
     if (!("Notification" in window)) {
       console.log("This browser does not support desktop notification");
     }
-
-    // Let's check whether notification permissions have alredy been granted
-    else if (Notification.permission === "granted") {
-      // If it's okay let's create a notification
-      var notification = new Notification("Hi there!");
-    }
-
-    // Otherwise, we need to ask the user for permission
-    else if (
-      Notification.permission !== "denied" ||
-      Notification.permission === "default"
-    ) {
+  }
+// check if users's permission
+  checkPermission() {
+    if (Notification.permission === "granted") {
+      return true;
+    } else {
       Notification.requestPermission(function(permission) {
-        // If the user accepts, let's create a notification
         if (permission === "granted") {
-          var notification = new Notification("Hi there!");
+          var notification = new Notification(
+            "Notifications are enabled from now !"
+          );
+          localStorage.setItem("notification", true);
         }
       });
     }
-
-    // At last, if the user has denied notifications, and you
-    // want to be respectful there is no need to bother them any more.
   }
-  notifyMe();
+  //excute notification
+  pushNotification(body) {
+    Notification.requestPermission(function(permission) {
+      if (permission === "granted") {
+        var notification = new Notification(body);
+      }
+    });
+  }
 };
